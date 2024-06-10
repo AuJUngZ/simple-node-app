@@ -18,16 +18,12 @@ pipeline {
                 }
             }
         }
-        stage('Deploy with kubectl') {
+        stage('Deploy to Minikube') {
             steps {
-                script {
-                    kubectl(
-                        // credentialsId: 'minikube-credentials',
-                        namespace: 'default',
-                        command: 'apply',
-                        text: 'manifest.yaml'
-                    )
-                }
+                sh '''
+                    kubectl config use-context minikube
+                    kubectl apply -f manifest.yaml
+                '''
             }
         }
     }
