@@ -18,12 +18,12 @@ pipeline {
                 }
             }
         }
-        stage('Deploy to Minikube') {
-            steps {
-                sh '''
-                    kubectl apply -f manifest.yaml --validate=false
-                '''
-            }
+        stage('Deploy to Kubernetes') {
+            script {
+                    withKubeCredentials(kubeconfigWrite: true) {
+                        sh 'kubectl apply -f deployment.yaml'
+                    }
+                }
         }
     }
 }
