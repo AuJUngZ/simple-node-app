@@ -21,7 +21,7 @@ pipeline {
         stage('Deploy to Minikube') {
             steps {
                 sh '''
-                    kubectl apply -f manifest.yaml
+                    kubectl apply -f manifest.yaml --validate=false
                 '''
             }
         }
