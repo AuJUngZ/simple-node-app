@@ -21,7 +21,9 @@ pipeline {
         stage('Deploy to Kubernetes with Kubectl') {
             steps {
                 script {
-                    sh "kubectl apply -f deployment.yaml"
+                    withKubeCredentials(kubeconfigWrite: true) {
+                        sh "kubectl apply -f deployment.yaml"
+                    }
                 }
             }
         }
