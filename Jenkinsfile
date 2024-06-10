@@ -34,7 +34,7 @@ pipeline {
                     sh 'docker pull aujung/pb-simple-app:latest'
                     
                     // Run the new container with the updated image
-                    sh 'docker run -d --name pb-simple-app-container -p 8080:8080 aujung/pb-simple-app:latest'
+                    sh 'docker run -d --name pb-simple-app-container -p 80:3000 aujung/pb-simple-app:latest'
                 }
             }
         }
