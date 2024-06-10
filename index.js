@@ -6,7 +6,7 @@ const port = 3000;
 
 app.get("/", (req, res) => {
   res.send({
-    message: `${os.hostname()} is running on port ${port}! with simeple node js app`,
+    message: `${os.hostname()} is running on port ${port}! with simeple node js app with github webhook!`,
   });
 });
 
