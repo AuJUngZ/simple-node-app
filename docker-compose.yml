@@ -1,0 +1,6 @@
+version: "3"
+services:
+  simple-app:
+    image: aujung/pb-simple-app
+    ports:
+      - "80:3000"
