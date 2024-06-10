@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     kubectl(
-                        credentialsId: 'minikube-credentials',
+                        // credentialsId: 'minikube-credentials',
                         namespace: 'default',
                         command: 'apply',
                         text: 'manifest.yaml'
