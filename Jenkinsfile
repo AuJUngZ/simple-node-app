@@ -21,7 +21,9 @@ pipeline {
         stage('Deploy to Kubernetes with Kubectl') {
             steps {
                 script {
-                    sh "kubectl apply -f deployment.yaml"
+                    withEnv(["KUBECONFIG=/home/aujung/kubeconfig.yaml"]) {
+                        sh "kubectl apply -f deployment.yaml"
+                    }
                 }
             }
         }
