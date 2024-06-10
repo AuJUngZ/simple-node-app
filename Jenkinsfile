@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     stages {
         stage('Build Docker Image') {
             steps {
@@ -9,7 +8,6 @@ pipeline {
                 }
             }
         }
-
         stage('Push To Docker Hub') {
             steps {
                 script {
@@ -20,11 +18,15 @@ pipeline {
                 }
             }
         }
-
-        stage('Deploy to Kubernetes') {
+        stage('Deploy with kubectl') {
             steps {
                 script {
-                    sh 'kubectl apply -f manifest.yaml'
+                    kubectl(
+                        credentialsId: 'minikube-credentials',
+                        namespace: 'default',
+                        command: 'apply',
+                        text: 'manifest.yaml'
+                    )
                 }
             }
         }
