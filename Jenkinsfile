@@ -21,7 +21,6 @@ pipeline {
         stage('Deploy to Minikube') {
             steps {
                 sh '''
-                    kubectl config use-context minikube
                     kubectl apply -f manifest.yaml
                 '''
             }
