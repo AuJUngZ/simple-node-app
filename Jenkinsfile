@@ -21,20 +21,10 @@ pipeline {
             }
         }
 
-        stage('Update Current Deployment') {
+        stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    // Stop the existing container
-                    sh 'docker stop pb-simple-app-container || true' // Stop the container if it exists
-                    
-                    // Remove the existing container
-                    sh 'docker rm pb-simple-app-container || true' // Remove the container if it exists
-                    
-                    // Pull the updated image from Docker Hub
-                    sh 'docker pull aujung/pb-simple-app:latest'
-                    
-                    // Run the new container with the updated image
-                    sh 'docker run -d --name pb-simple-app-container -p 80:3000 aujung/pb-simple-app:latest'
+                    sh 'kubectl apply -f manifest.yaml'
                 }
             }
         }
